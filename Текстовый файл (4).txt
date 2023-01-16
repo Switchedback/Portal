@@ -1,0 +1,97 @@
+@startuml
+
+node "Удалённый_сервер" {
+   [Postgresql]
+   [Django, Python]
+   [CSS, HTML, JavaScript]
+}
+
+node "Клиент" {
+   [Браузер]
+}
+
+[Postgresql] --> [Django, Python]
+Удалённый_сервер --> Клиент
+
+@enduml
+
+Развёртывание
+-----------------------------------------------------------------
+
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Новости" as e01 {
+  *id_n : number <<PK>>
+  --
+  title : text
+  short_d : text
+  date_p : date
+  date_u : date
+  photo : text
+  text_n : text
+  is_published : text
+  id_ct : number <<FK>>
+}
+
+entity "Категории_новостей" as e02 {
+  *id_ct : number <<pk>>
+  --
+  title : text
+}
+
+entity "Меню" as e03 {
+  *id_m : number <<PK>>
+  --
+  title : text
+  price : money
+  photo : text
+  text_m : text
+  id__cm : number <<FK>>
+}
+
+entity "Категории_меню" as e04 {
+  *id_g : number <<PK>>
+  --
+  title : text
+  media : text
+  date_p: date
+}
+
+entity "Галерея" as e05 {
+  *e3_id : number <<generated>>
+  --
+  e1_id : number <<FK>>
+  other_details : text
+}
+
+entity "Бронь" as e06 {
+  *id_b : number <<generated>>
+  --
+  name_c : text
+  phone_n : number
+  dabe_b: date
+  time_b: time
+  tablo_b: number
+  clients_n: number
+}
+
+entity "Контакты" as e07 {
+  *id_k : number <<PK>>
+  --
+  title : text
+  contacts : number
+  description : text
+}
+
+e01 }|-- e02
+e03 }|-- e04
+@enduml
+
+ER
+
+-----------------------------------------------------------------
